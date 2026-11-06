@@ -29,17 +29,7 @@ class NoRedirect(HTTPRedirectHandler):
 
 
 def transport(method, url, headers, body):
-    req = Request(url, data=body, headers=headers, method=method)
-    try:
-        with build_opener(NoRedirect).open(req, timeout=15) as response:
-            return json.load(response)
-    except HTTPError as exc:
-        messages = {401: 'Credenciales de prueba rechazadas.',
-                    403: 'Acceso de prueba no autorizado.',
-                    429: 'Cuota o límite de pruebas alcanzado; no se reintenta.'}
-        raise ProviderError(messages.get(exc.code, 'La API de pruebas no pudo completar la consulta.')) from None
-    except (URLError, TimeoutError, ValueError):
-        raise ProviderError('No se pudo obtener una respuesta válida de la API de pruebas.') from None
+    raise ProviderError('Amadeus Self-Service fue retirado el 17/07/2026. Esta conexión está deshabilitada.')
 
 
 class AmadeusTest:
@@ -55,7 +45,7 @@ class AmadeusTest:
 
     @classmethod
     def from_environment(cls, **kwargs):
-        return cls(os.environ.get('AMADEUS_TEST_API_KEY'), os.environ.get('AMADEUS_TEST_API_SECRET'), **kwargs)
+        raise ProviderError('Amadeus Self-Service está retirado. No crear cuentas ni configurar claves para este adaptador.')
 
     def _request(self, method, path, headers, body=None):
         if self.requests_used >= self.request_limit:

@@ -30,4 +30,6 @@ Abre `index.html` para revisar la interfaz sin instalación. Para desarrollo tam
 
 Sin Gmail, seguimiento, APIs de pago, secretos en el frontend ni compras automáticas. No se han creado cuentas ni activado facturación. Antes de habilitar una fuente hay que comprobar sus condiciones, cobertura y coste cero efectivo. Los precios actuales de low cost siguen siendo el principal acceso pendiente.
 
-Primera integración preparada: adaptador **Amadeus TEST**, con autenticación y consulta de tramos directos desde los cinco aeropuertos. Falta crear/configurar la cuenta Test y probar la conexión real. No hay acceso a producción ni resultados reales; instrucciones en `backend/providers/AMADEUS.md`. Total: 29 pruebas de backend superadas con datos sintéticos.
+## Corrección sobre Amadeus
+
+Amadeus Self-Service fue retirado el 17/07/2026. La recomendación anterior de crear una cuenta Test era incorrecta y queda anulada. El adaptador real está deshabilitado; solo se conservan pruebas simuladas. No hay proveedor activo ni es posible obtener precios con esa integración. Consulta `backend/providers/AMADEUS.md`.

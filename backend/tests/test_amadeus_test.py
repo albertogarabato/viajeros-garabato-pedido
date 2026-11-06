@@ -26,6 +26,11 @@ class AmadeusConnectionTests(unittest.TestCase):
             return {'data':[]}
         self.api=AmadeusTest('SYNTHETIC-KEY','SYNTHETIC-SECRET',request_transport=fake)
 
+    def test_retired_service_cannot_read_environment_or_make_real_requests(self):
+        with self.assertRaises(ProviderError):AmadeusTest.from_environment()
+        api=AmadeusTest('SYNTHETIC-KEY','SYNTHETIC-SECRET')
+        with self.assertRaises(ProviderError):api.search_direct('AAA','BBB','2027-04-10',Party(1))
+
     def test_requires_credentials_before_network(self):
         with self.assertRaises(MissingCredentials):AmadeusTest('', '')
 

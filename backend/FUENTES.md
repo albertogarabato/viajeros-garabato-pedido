@@ -1,3 +1,5 @@
+> Corrección: Amadeus Self-Service está retirado desde el 17/07/2026. Las referencias antiguas a cuotas y registro no representan una oferta vigente. No se recomienda crear una cuenta ni usar ese adaptador.
+
 # Validación de fuentes — 6 de noviembre de 2026
 
 Objetivo: buscar tramos separados y combinarlos, para cualquier destino, desde SCQ, LCG, VGO, OPO y MAD. No es una búsqueda de un viaje concreto.
@@ -10,7 +12,7 @@ No se ha validado todavía una fuente que reúna acceso personal autorizado, tar
 |---|---|---|
 | Aena | Publica destinos a partir de programación actual y advierte de posibles cambios. No da una tarifa para cinco personas ni confirma una conexión en una fecha. | Referencia para validar la red; pendiente de mecanismo autorizado de actualización. |
 | Aeropuerto de Oporto | Tiene directorio de destinos y aerolíneas. | Misma función: red, sin tomarla como cotización. |
-| Amadeus Self-Service | FAQ: excluye low cost. El entorno de pruebas usa colecciones limitadas; producción exige contrato e información de facturación y puede cobrar al exceder cuotas. | No activar producción con el requisito actual de no facturación. Pruebas no equivalen a precios reales. |
+| Amadeus Self-Service | El portal oficial anuncia su retirada el 17/07/2026; la organización de SDK oficiales está archivada. | Descartado para nuevas integraciones. Conector deshabilitado. |
 | Skyscanner Travel API | Acceso comercial sujeto a selección; excluye personas con uso no comercial y exige audiencia. | No es una vía de acceso para este proyecto familiar. |
 | Travelpayouts Data API | Datos en caché de búsquedas previas. La API de búsqueda en directo requiere acceso separado. | No sirve por sí sola para confirmar disponibilidad del grupo ni clasificar como precio actual. |
 | Duffel | Publica cargo por exceso de búsquedas respecto a reservas. | No activar bajo la política de coste cero. |
