@@ -1,7 +1,7 @@
 > Referencia funcional aportada por el propietario el 6 de noviembre de 2026. No describe todas las funciones implementadas.
 > Correcciones posteriores: nombre **Viajeros Garabato Penido**; **solo vuelos**, sin servicios adicionales ni gastos terrestres.
 > El propietario autorizó posteriormente repositorio público y publicación gratuita en GitHub Pages. Se conserva el enlace con el identificador original.
-> Estado actual: interfaz, consultas externas asistidas y comparación manual de vuelos y suplementos. Pendientes: motor automático, fuentes reales, persistencia, múltiples destinos, aeropuertos adicionales, regreso abierto y configuración de adultos/menores.
+> Estado actual: interfaz, consultas externas asistidas. Calculadora manual retirada por el propietario. Pendientes: motor automático, fuentes reales, persistencia, múltiples destinos, aeropuertos adicionales, regreso abierto y configuración de adultos/menores.
 
 # VIAJEROS GARABATO PENIDO
 ## Documento de definición funcional y arquitectura — v0.6
