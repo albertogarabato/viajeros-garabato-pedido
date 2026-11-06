@@ -1,6 +1,6 @@
 # Motor Garabato — primera pieza del backend
 
-Este motor es independiente del destino: no contiene rutas prefijadas a Varsovia ni a ninguna otra ciudad. El frontend publicado todavía prepara consultas externas. Este código no se ejecuta en GitHub Pages, que sirve archivos estáticos. No hay proveedor de tarifas conectado ni backend desplegado.
+Este motor es independiente del destino: no contiene rutas prefijadas a Varsovia ni a ninguna otra ciudad. El frontend presenta la búsqueda en la propia página, sin abrir buscadores externos. Este código no se ejecuta en GitHub Pages, que sirve archivos estáticos. No hay proveedor de tarifas conectado ni backend desplegado.
 
 ## Implementado
 
@@ -37,3 +37,5 @@ Las 19 pruebas usan aeropuertos AAA/BBB/CCC/DDD y precios **sintéticos exclusiv
 `Flight` representa un vuelo dirigido y una cotización para el grupo completo. Debe tener identificador y proveedor; aeropuertos IATA exactos; salida/llegada con zona horaria; total en unidades menores de la moneda (céntimos en EUR); adultos y edades; modalidad de equipaje; fecha de consulta y caducidad. El enlace de reserva, cuando exista, procede del proveedor. Se deben volver a comprobar las ofertas antes de reservar: las sumas de billetes independientes no son una reserva conjunta ni bloquean plazas.
 
 Las búsquedas solo pueden ser completas dentro de las fuentes, fechas y vuelos que se hayan consultado. No hay promesa de mínimo global de todas las aerolíneas.
+
+Flujo actual: Buscar mantiene la búsqueda dentro de la aplicación. Sin proveedor configurado, muestra indisponibilidad explícita, no una lista vacía de supuestos vuelos. No hay resultados reales disponibles todavía. El cliente preparado en `search-client.js` admite un endpoint HTTPS público del backend (sin secretos); no se ha desplegado dicho servicio. La composición de adultos/menores también deberá configurarse antes de solicitar tarifas reales.

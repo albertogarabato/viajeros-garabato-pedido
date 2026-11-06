@@ -2,3 +2,5 @@
 
 @media(min-width:1151px){header .brand{margin-left:135px}}
 @media(max-width:480px){.mode-tabs small{display:block;font-size:7px}.mode-tabs button{flex-wrap:wrap}.mode-tabs button .icon{display:none}}
+
+#search-results{scroll-margin-top:24px}#search-status{background:#edf5ff;border:1px solid #cbdff9;border-radius:16px;padding:20px;margin-top:18px}#search-status h3{font-size:21px;margin:0 0 10px}#search-status p{font-size:14px;line-height:1.7;margin:0}.flight-card{border:1px solid var(--line);border-radius:16px;padding:20px;margin:15px 0}.flight-card p{font-size:13px}

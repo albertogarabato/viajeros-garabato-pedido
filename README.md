@@ -42,3 +42,5 @@ La calculadora manual de presupuestos se retiró por petición del propietario. 
 ## Motor de conexiones
 
 Primer núcleo genérico implementado en `backend/optimizer.py`: rutas directas o una conexión, cruce de horarios con zona horaria, total del grupo, vigencia de ofertas y alternativas de precio/tiempo/riesgo. 19 pruebas con datos exclusivamente sintéticos. No contiene un destino prefijado ni está conectado aún a la web o a una fuente real. Consulta `backend/README.md` y la revisión de proveedores en `backend/FUENTES.md`.
+
+Flujo actual: Buscar mantiene la búsqueda dentro de la aplicación. Sin proveedor configurado, muestra indisponibilidad explícita, no una lista vacía de supuestos vuelos. No hay resultados reales disponibles todavía. El cliente preparado en `search-client.js` admite un endpoint HTTPS público del backend (sin secretos); no se ha desplegado dicho servicio. La composición de adultos/menores también deberá configurarse antes de solicitar tarifas reales.
