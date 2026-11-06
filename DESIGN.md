@@ -14,4 +14,4 @@ Prompt final:
 
 ## Comportamiento
 
-El filtro de duración expresa días entre salida y vuelta y descarta combinaciones fuera del rango. Fechas y preferencias se pueden desplegar. «Cualquier destino» permite preparar una consulta abierta; no implica que se hayan descubierto vuelos. Los cinco viajeros son un número total, sin presuponer edades.
+El filtro de duración expresa días entre salida y vuelta y descarta combinaciones fuera del rango. Fechas y preferencias se pueden desplegar. «Cualquier destino» conserva una búsqueda abierta; no implica que se hayan descubierto vuelos. Los resultados permanecen en la aplicación, pendientes de una fuente real. Los cinco viajeros son un número total, sin presuponer edades.
