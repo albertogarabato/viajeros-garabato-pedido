@@ -4,7 +4,7 @@ Primera versión de una herramienta familiar para preparar búsquedas y comparar
 
 ## Abrir
 
-Abre `index.html` en el navegador. También puedes servir esta carpeta con `python3 -m http.server 8000` y visitar `http://localhost:8000`. No requiere instalación ni claves. No se ha desplegado ni publicado una web.
+Abre `index.html` en el navegador. También puedes servir esta carpeta con `python3 -m http.server 8000` y visitar `http://localhost:8000`. No requiere instalación ni claves. Publicación autorizada en GitHub Pages: https://albertogarabato.github.io/viajeros-garabato-pedido/ (rama main, carpeta raíz).
 
 ## Incluido
 
@@ -22,7 +22,7 @@ No hay acceso a inventario de aerolíneas, búsqueda automática de rutas, preci
 
 ## Privacidad y coste
 
-Sin Gmail, analítica, cookies, cuentas, APIs de pago, fuentes remotas ni secretos en el frontend. Las consultas externas se envían al buscador solo al pulsar sus enlaces; sus políticas se aplican allí. Los datos descargados permanecen bajo control de la familia. No introducir datos personales o credenciales en los campos. El funcionamiento local no tiene coste de servicio. Mantener este repositorio privado; no activar Pages, hosting ni cambiar visibilidad sin consultar al propietario.
+Sin Gmail, analítica, cookies, cuentas, APIs de pago, fuentes remotas ni secretos en el frontend. Las consultas externas se envían al buscador solo al pulsar sus enlaces; sus políticas se aplican allí. Los datos descargados permanecen bajo control de la familia. No introducir datos personales o credenciales en los campos. El funcionamiento local no tiene coste de servicio. El propietario autorizó hacer público el repositorio y activar GitHub Pages el 6 de noviembre de 2026. No introducir secretos ni presupuestos personales en el repositorio. Los formularios no envían sus valores a GitHub; los enlaces externos envían la consulta al buscador.
 
 ## Comprobar
 
