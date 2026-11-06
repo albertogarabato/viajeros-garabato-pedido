@@ -38,3 +38,7 @@ Con Node instalado: `node tests/core.test.cjs`. Comprueba aritmética familiar, 
 Interfaz adaptada a la referencia familiar: paisaje alpino, azul, cabecera manuscrita y buscador central. Consulta `DESIGN.md` para la procedencia del fondo y el alcance. Añadido un filtro opcional de duración en días. Favoritos y viajes guardados siguen pendientes y aparecen desactivados. El alcance es exclusivamente vuelos; se excluyen gastos terrestres.
 
 La calculadora manual de presupuestos se retiró por petición del propietario. La comparación automática de ahorro, tiempo y riesgo se integrará con los resultados reales, cuando exista una fuente válida.
+
+## Motor de conexiones
+
+Primer núcleo genérico implementado en `backend/optimizer.py`: rutas directas o una conexión, cruce de horarios con zona horaria, total del grupo, vigencia de ofertas y alternativas de precio/tiempo/riesgo. 19 pruebas con datos exclusivamente sintéticos. No contiene un destino prefijado ni está conectado aún a la web o a una fuente real. Consulta `backend/README.md` y la revisión de proveedores en `backend/FUENTES.md`.
