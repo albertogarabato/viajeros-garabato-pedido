@@ -1,4 +1,4 @@
-# Viajeros Garabato Pedido
+# Viajeros Garabato Penido
 
 Primera versión de una herramienta familiar para preparar búsquedas y comparar presupuestos de vuelos. Interfaz adaptable a móvil, en español, sin dependencias ni servicios de pago.
 
