@@ -26,7 +26,7 @@ Sin Gmail, analítica, cookies, cuentas, APIs de pago, fuentes remotas ni secret
 
 ## Comprobar
 
-Con Node instalado: `node tests/core.test.cjs`. Comprueba aritmética familiar, redondeo, combinaciones y validaciones de fechas e importes. La interfaz requiere además revisión en navegador móvil.
+Con Node instalado: `node tests/core.test.cjs`. Comprueba aritmética familiar, redondeo, combinaciones y validaciones de fechas e importes. Revisar también en navegador móvil después de cada cambio visual.
 
 ## Próximas iteraciones
 
@@ -34,3 +34,7 @@ Con Node instalado: `node tests/core.test.cjs`. Comprueba aritmética familiar, 
 2. Validar visualmente y con teclado en móvil; ajustar la experiencia con el uso familiar.
 3. Valorar importación manual de presupuestos con fuente, fecha y tramos, sin datos personales.
 4. Estudiar fuentes de datos autorizadas y gratuitas antes de integrar cualquier proveedor. Si una integración necesita secretos, deben vivir en un backend, nunca en estos archivos. No habilitar gastos ni despliegues automáticamente.
+
+## Diseño
+
+Interfaz adaptada a la referencia familiar: paisaje alpino, azul, cabecera manuscrita y buscador central. Consulta `DESIGN.md` para la procedencia del fondo y el alcance. Añadido un filtro opcional de duración en días. Alojamiento, favoritos y viajes guardados siguen pendientes y aparecen desactivados.
