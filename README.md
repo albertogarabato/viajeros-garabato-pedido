@@ -13,7 +13,7 @@ Abre `index.html` en el navegador. También puedes servir esta carpeta con `pyth
 - Destino libre; ida y vuelta con flexibilidad de 0, ±1, ±3 o ±7 días en ambas fechas. Descarta fechas pasadas y vueltas anteriores a la salida.
 - Generación de combinaciones de fechas y consultas externas de texto a Google Travel por aeropuerto. Las preferencias low cost y billetes independientes se añaden a la consulta; no son filtros garantizados del proveedor. Verificar siempre las condiciones allí.
 - Exportación del plan en JSON. No se guardan automáticamente preferencias ni presupuestos.
-- Comparación de dos presupuestos introducidos manualmente: precio por persona de todos los vuelos × viajeros + equipaje/asientos + traslados/aparcamiento + alojamiento/otros. Los extras son totales familiares. Todos los importes en EUR.
+- Comparación de dos presupuestos introducidos manualmente: precio por persona de todos los vuelos × viajeros + equipaje/asientos. Los extras son totales familiares. Todos los importes en EUR.
 - Diferencia familiar y por persona; avisos de billetes separados.
 
 ## Límites de esta versión
@@ -37,4 +37,4 @@ Con Node instalado: `node tests/core.test.cjs`. Comprueba aritmética familiar, 
 
 ## Diseño
 
-Interfaz adaptada a la referencia familiar: paisaje alpino, azul, cabecera manuscrita y buscador central. Consulta `DESIGN.md` para la procedencia del fondo y el alcance. Añadido un filtro opcional de duración en días. Alojamiento, favoritos y viajes guardados siguen pendientes y aparecen desactivados.
+Interfaz adaptada a la referencia familiar: paisaje alpino, azul, cabecera manuscrita y buscador central. Consulta `DESIGN.md` para la procedencia del fondo y el alcance. Añadido un filtro opcional de duración en días. Favoritos y viajes guardados siguen pendientes y aparecen desactivados. El alcance es exclusivamente vuelos; se excluyen gastos terrestres.
