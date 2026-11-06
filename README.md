@@ -1,46 +1,31 @@
 # Viajeros Garabato Penido
 
-Primera versión de una herramienta familiar para preparar búsquedas de vuelos. Interfaz adaptable a móvil, en español, sin dependencias ni servicios de pago.
+Aplicación familiar centrada exclusivamente en vuelos. Publicada en https://albertogarabato.github.io/viajeros-garabato-pedido/ con autorización del propietario. El identificador histórico del repositorio y del enlace conserva «pedido».
 
-## Abrir
+## Estado actual
 
-Abre `index.html` en el navegador. También puedes servir esta carpeta con `python3 -m http.server 8000` y visitar `http://localhost:8000`. No requiere instalación ni claves. Publicación autorizada en GitHub Pages: https://albertogarabato.github.io/viajeros-garabato-pedido/ (rama main, carpeta raíz).
+Interfaz en español, adaptable a móvil y basada en la referencia familiar de montaña y lago. SCQ, LCG, VGO, OPO y MAD seleccionados por defecto; cinco viajeros modificables; destino, fechas flexibles y filtro de duración.
 
-## Incluido
+«Buscar» conserva la consulta en la página. No abre Google Flights ni otro buscador. Como todavía no hay proveedor ni servicio de búsqueda desplegado, muestra **búsqueda de precios no disponible**, sin inventar ofertas ni afirmar que no existen vuelos. No se guardan preferencias ni se envían consultas a otros servicios en esta configuración.
 
-- SCQ, LCG, VGO, OPO y MAD seleccionados inicialmente; selección múltiple.
-- Cinco viajeros por defecto, modificable entre 1 y 9. No se presuponen edades: confirmar adultos, menores y edades en el proveedor.
-- Destino libre; ida y vuelta con flexibilidad de 0, ±1, ±3 o ±7 días en ambas fechas. Descarta fechas pasadas y vueltas anteriores a la salida.
-- Generación de combinaciones de fechas y consultas externas de texto a Google Travel por aeropuerto. Las preferencias low cost y billetes independientes se añaden a la consulta; no son filtros garantizados del proveedor. Verificar siempre las condiciones allí.
-- Exportación del plan en JSON. No se guardan automáticamente preferencias ni presupuestos.
+No hay calculadora manual, servicios complementarios ni gastos terrestres. Los apartados pendientes aparecen desactivados.
 
-## Límites de esta versión
+## Motor y conexión
 
-No hay acceso a inventario de aerolíneas, búsqueda automática de rutas, precios en directo, reservas ni alertas automáticas de precio. Ningún enlace garantiza disponibilidad, una conexión o una tarifa para los cinco. Para comparar, usar el mismo destino, fechas y viajeros, e incluir todos los tramos de ida y vuelta. No hay conversión de moneda. La diferencia no valora el riesgo económico de una conexión perdida.
+`backend/optimizer.py` contiene el primer núcleo de exploración de rutas directas y con una conexión, cruce de horarios, cotizaciones del grupo y alternativas de precio/tiempo/riesgo. Tiene 19 pruebas con datos exclusivamente sintéticos. No está conectado a la interfaz ni a una fuente real.
 
-## Privacidad y coste
+`search-client.js` prepara el contrato de búsqueda HTTPS. El metadato `flight-search-api` está vacío intencionadamente; no incluye claves. Una integración real requiere un backend, fuente autorizada, adultos y edades de menores, y validación de las ofertas. No basta con rellenar una URL. GitHub Pages sirve la interfaz estática, no ejecuta el motor Python.
 
-Sin Gmail, analítica, cookies, cuentas, APIs de pago, fuentes remotas ni secretos en el frontend. Las consultas externas se envían al buscador solo al pulsar sus enlaces; sus políticas se aplican allí. Los datos descargados permanecen bajo control de la familia. No introducir datos personales o credenciales en los campos. El funcionamiento local no tiene coste de servicio. El propietario autorizó hacer público el repositorio y activar GitHub Pages el 6 de noviembre de 2026. No introducir secretos ni presupuestos personales en el repositorio. Los formularios no envían sus valores a GitHub; los enlaces externos envían la consulta al buscador.
+Consulta `backend/README.md`, `backend/FUENTES.md` y `REQUISITOS.md` para alcance, limitaciones y próximos pasos. `DESIGN.md` documenta el fondo y la referencia visual.
 
-## Comprobar
+## Uso local y comprobaciones
 
-Con Node instalado: `node tests/core.test.cjs`. Comprueba aritmética familiar, redondeo, combinaciones y validaciones de fechas e importes. Revisar también en navegador móvil después de cada cambio visual.
+Abre `index.html` para revisar la interfaz sin instalación. Para desarrollo también puedes servir la carpeta con `python3 -m http.server 8000`.
 
-## Próximas iteraciones
+- Fechas y sintaxis: `node tests/core.test.cjs`.
+- Motor: `python3 -m unittest discover -s backend/tests -v`.
+- Verificar además el flujo en navegador y móvil después de cambios de interfaz.
 
-1. Probar el flujo con presupuestos reales y confirmar distribución de adultos/menores y equipaje habitual.
-2. Validar visualmente y con teclado en móvil; ajustar la experiencia con el uso familiar.
-3. Valorar importación manual de presupuestos con fuente, fecha y tramos, sin datos personales.
-4. Estudiar fuentes de datos autorizadas y gratuitas antes de integrar cualquier proveedor. Si una integración necesita secretos, deben vivir en un backend, nunca en estos archivos. No habilitar gastos ni despliegues automáticamente.
+## Coste y seguridad
 
-## Diseño
-
-Interfaz adaptada a la referencia familiar: paisaje alpino, azul, cabecera manuscrita y buscador central. Consulta `DESIGN.md` para la procedencia del fondo y el alcance. Añadido un filtro opcional de duración en días. Favoritos y viajes guardados siguen pendientes y aparecen desactivados. El alcance es exclusivamente vuelos; se excluyen gastos terrestres.
-
-La calculadora manual de presupuestos se retiró por petición del propietario. La comparación automática de ahorro, tiempo y riesgo se integrará con los resultados reales, cuando exista una fuente válida.
-
-## Motor de conexiones
-
-Primer núcleo genérico implementado en `backend/optimizer.py`: rutas directas o una conexión, cruce de horarios con zona horaria, total del grupo, vigencia de ofertas y alternativas de precio/tiempo/riesgo. 19 pruebas con datos exclusivamente sintéticos. No contiene un destino prefijado ni está conectado aún a la web o a una fuente real. Consulta `backend/README.md` y la revisión de proveedores en `backend/FUENTES.md`.
-
-Flujo actual: Buscar mantiene la búsqueda dentro de la aplicación. Sin proveedor configurado, muestra indisponibilidad explícita, no una lista vacía de supuestos vuelos. No hay resultados reales disponibles todavía. El cliente preparado en `search-client.js` admite un endpoint HTTPS público del backend (sin secretos); no se ha desplegado dicho servicio. La composición de adultos/menores también deberá configurarse antes de solicitar tarifas reales.
+Sin Gmail, seguimiento, APIs de pago, secretos en el frontend ni compras automáticas. No se han creado cuentas ni activado facturación. Antes de habilitar una fuente hay que comprobar sus condiciones, cobertura y coste cero efectivo. Los precios actuales de low cost siguen siendo el principal acceso pendiente.
