@@ -33,3 +33,7 @@ Sin Gmail, seguimiento, APIs de pago, secretos en el frontend ni compras automá
 ## Corrección sobre Amadeus
 
 Amadeus Self-Service fue retirado el 17/07/2026. La recomendación anterior de crear una cuenta Test era incorrecta y queda anulada. El adaptador real está deshabilitado; solo se conservan pruebas simuladas. No hay proveedor activo ni es posible obtener precios con esa integración. Consulta `backend/providers/AMADEUS.md`.
+
+## Primera fuente conectada
+
+SerpApi validada por API el 7/11/2026: cuenta gratuita, una consulta técnica y 21 opciones con precio. El adaptador y la normalización están preparados; falta desplegar el backend privado y conectarlo al portal. No se han habilitado resultados familiares ni optimización de tarifas observadas como si fueran cotizaciones confirmadas. Detalles en `backend/providers/SERPAPI.md`.
