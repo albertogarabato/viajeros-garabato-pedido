@@ -1,39 +1,37 @@
 # Viajeros Garabato Penido
 
-Aplicación familiar centrada exclusivamente en vuelos. Publicada en https://albertogarabato.github.io/viajeros-garabato-pedido/ con autorización del propietario. El identificador histórico del repositorio y del enlace conserva «pedido».
+Portal familiar exclusivamente de vuelos. Publicado con autorización en https://albertogarabato.github.io/viajeros-garabato-pedido/ (el enlace conserva el nombre histórico «pedido»).
 
-## Estado actual
+## Primera conexión web: versión 0.3.0
 
-Interfaz en español, adaptable a móvil y basada en la referencia familiar de montaña y lago. SCQ, LCG, VGO, OPO y MAD seleccionados por defecto; cinco viajeros modificables; destino, fechas flexibles y filtro de duración.
+- Orígenes SCQ, LCG, VGO, OPO y MAD; destino por código IATA o una ciudad de la lista local.
+- Composición de viajeros explícita: adultos de 12 años o más, niños de 2–11, bebés con asiento o en brazos. Los valores iniciales deben confirmarse.
+- Cloudflare Workers aloja la conexión con SerpApi. La clave del proveedor solo está en un secreto del servidor. Las búsquedas requieren además una clave familiar privada.
+- Los resultados aparecen en la página; se consultan ida y vuelta por separado, en fechas exactas, con hasta una escala. Hasta dos consultas al proveedor por búsqueda, salvo respuestas en caché. Cada intento fallido puede afectar a la cuota del proveedor.
+- Se pueden ordenar por precio mostrado o duración. No hay afirmación de mejor ruta global ni cotización familiar confirmada. El precio se conserva tal como llega; no se multiplica ni se suman ida y vuelta mientras no se verifique su base.
+- Cobertura limitada a Google Flights a través de SerpApi. No abarca todas las aerolíneas. Equipaje, plazas, condiciones y protección de las conexiones requieren comprobación.
 
-«Buscar» conserva la consulta en la página. No abre Google Flights ni otro buscador. Como todavía no hay proveedor ni servicio de búsqueda desplegado, muestra **búsqueda de precios no disponible**, sin inventar ofertas ni afirmar que no existen vuelos. No se guardan preferencias ni se envían consultas a otros servicios en esta configuración.
+Las fechas flexibles y la construcción de conexiones con billetes independientes todavía no están conectadas a datos reales. Se muestran como pendientes. No hay hoteles, calculadora manual ni costes de desplazamientos terrestres.
 
-No hay calculadora manual, servicios complementarios ni gastos terrestres. Los apartados pendientes aparecen desactivados.
+## Despliegue y seguridad
 
-## Motor y conexión
+`cloudflare/worker.mjs` se desplegó el 7/11/2026 en `https://viajeros-garabato-penido-api.alberto-garabato.workers.dev` con versión `2026-11-07-source-1`. `/health` verifica la versión y si existen ambos secretos; no consume cuota de vuelos. La clave SerpApi está guardada cifrada. El propietario ha guardado `FAMILY_ACCESS_CODE` cifrado; `/health` confirma ambos secretos configurados y `/search` rechaza peticiones sin autorización (401). Aún falta una búsqueda autenticada desde el portal para verificar el recorrido completo.
 
-`backend/optimizer.py` contiene el primer núcleo de exploración de rutas directas y con una conexión, cruce de horarios, cotizaciones del grupo y alternativas de precio/tiempo/riesgo. Tiene 19 pruebas con datos exclusivamente sintéticos. No está conectado a la interfaz ni a una fuente real.
+`search-client.js` usa el servicio HTTPS configurado en `index.html`. La clave familiar se introduce en el formulario, se mantiene en memoria de la página y no se guarda en almacenamiento del navegador. Nunca introducir allí la clave de SerpApi.
 
-`search-client.js` prepara el contrato de búsqueda HTTPS. El metadato `flight-search-api` está vacío intencionadamente; no incluye claves. Una integración real requiere un backend, fuente autorizada, adultos y edades de menores, y validación de las ofertas. No basta con rellenar una URL. GitHub Pages sirve la interfaz estática, no ejecuta el motor Python.
+No se han activado planes de pago ni compras. El servicio comprueba que SerpApi siga siendo una cuenta gratuita activa y tenga cuota antes de consultar. Caché de quince minutos por ubicación, sin garantía de caché global ni contador mensual propio. No hay Gmail, nombres, documentos ni reservas automáticas.
 
-Consulta `backend/README.md`, `backend/FUENTES.md` y `REQUISITOS.md` para alcance, limitaciones y próximos pasos. `DESIGN.md` documenta el fondo y la referencia visual.
+## Motor de rutas pendiente de conexión
 
-## Uso local y comprobaciones
+`backend/optimizer.py` contiene el núcleo de combinación de vuelos con horarios absolutos, cotizaciones del grupo y alternativas de precio, tiempo y riesgo. Tiene 19 pruebas sintéticas y no está conectado todavía a la interfaz. La conexión web actual utiliza precios observados; no los convierte en cotizaciones confirmadas de ese motor.
 
-Abre `index.html` para revisar la interfaz sin instalación. Para desarrollo también puedes servir la carpeta con `python3 -m http.server 8000`.
+La fuente Amadeus Self-Service se retiró el 17/07/2026. Su adaptador real permanece deshabilitado; se conservan pruebas simuladas. No crear cuentas para esa integración retirada.
 
-- Fechas y sintaxis: `node tests/core.test.cjs`.
-- Motor: `python3 -m unittest discover -s backend/tests -v`.
-- Verificar además el flujo en navegador y móvil después de cambios de interfaz.
+## Comprobaciones
 
-## Coste y seguridad
+- `python3 -m unittest discover -s backend/tests -v`: 39 pruebas sintéticas.
+- Importar `cloudflare/worker.test.mjs` con Node y ejecutar `runTests()`: 28 comprobaciones sintéticas de autenticación, validación, límites de plan y filtrado de datos, sin consumir cuota.
+- `node tests/core.test.cjs`: fechas y sintaxis.
+- Revisar formulario y presentación en navegador después de cambios.
 
-Sin Gmail, seguimiento, APIs de pago, secretos en el frontend ni compras automáticas. No se han creado cuentas ni activado facturación. Antes de habilitar una fuente hay que comprobar sus condiciones, cobertura y coste cero efectivo. Los precios actuales de low cost siguen siendo el principal acceso pendiente.
-
-## Corrección sobre Amadeus
-
-Amadeus Self-Service fue retirado el 17/07/2026. La recomendación anterior de crear una cuenta Test era incorrecta y queda anulada. El adaptador real está deshabilitado; solo se conservan pruebas simuladas. No hay proveedor activo ni es posible obtener precios con esa integración. Consulta `backend/providers/AMADEUS.md`.
-
-## Primera fuente conectada
-
-SerpApi validada por API el 7/11/2026: cuenta gratuita, una consulta técnica y 21 opciones con precio. El adaptador y la normalización están preparados; falta desplegar el backend privado y conectarlo al portal. No se han habilitado resultados familiares ni optimización de tarifas observadas como si fueran cotizaciones confirmadas. Detalles en `backend/providers/SERPAPI.md`.
+La consulta técnica original de SerpApi devolvió 21 opciones. Se ha vuelto a usar esa respuesta de forma local para verificar la normalización, sin nuevas búsquedas. Consultar `cloudflare/README.md`, `backend/providers/SERPAPI.md`, `REQUISITOS.md` y `DESIGN.md` para detalles.

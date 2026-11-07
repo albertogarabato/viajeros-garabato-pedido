@@ -4,3 +4,7 @@
 @media(max-width:480px){.mode-tabs small{display:block;font-size:7px}.mode-tabs button{flex-wrap:wrap}.mode-tabs button .icon{display:none}}
 
 #search-results{scroll-margin-top:24px}#search-status{background:#edf5ff;border:1px solid #cbdff9;border-radius:16px;padding:20px;margin-top:18px}#search-status h3{font-size:21px;margin:0 0 10px}#search-status p{font-size:14px;line-height:1.7;margin:0}.flight-card{border:1px solid var(--line);border-radius:16px;padding:20px;margin:15px 0}.flight-card p{font-size:13px}
+
+.party-settings{border:1px solid #ced8e5;border-radius:16px;padding:18px;margin-top:24px}.party-settings legend{font-weight:700}.party-settings .options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.party-settings label{display:flex;flex-direction:column;gap:7px}.party-settings input{width:100%;box-sizing:border-box}.party-settings>label{max-width:440px}.party-settings p{font-size:.85rem}.flight-card{padding:18px;border:1px solid #d8e4ee;border-radius:16px;margin:14px 0;background:#fff}.flight-card h3{margin-top:0}.observed-price{font-size:1.3rem;font-weight:700}.results-sort{max-width:300px;margin:16px 0}@media(max-width:700px){.party-settings .options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.party-settings input{font:inherit;border:1px solid #bfcbd9;border-radius:10px;background:#fff;padding:10px 12px;min-height:44px}.party-settings label{font-size:.9rem;text-align:left}.party-settings .options{margin:8px 0 14px}.party-settings{margin-top:18px}.party-settings>p{font-weight:400}
