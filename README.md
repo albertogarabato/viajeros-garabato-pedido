@@ -15,7 +15,7 @@ Las fechas flexibles y la construcción de conexiones con billetes independiente
 
 ## Despliegue y seguridad
 
-`cloudflare/worker.mjs` se desplegó el 7/11/2026 en `https://viajeros-garabato-penido-api.alberto-garabato.workers.dev` con versión `2026-11-07-source-1`. `/health` verifica la versión y si existen ambos secretos; no consume cuota de vuelos. La clave SerpApi está guardada cifrada. El propietario ha guardado `FAMILY_ACCESS_CODE` cifrado; `/health` confirma ambos secretos configurados y `/search` rechaza peticiones sin autorización (401). Aún falta una búsqueda autenticada desde el portal para verificar el recorrido completo.
+`cloudflare/worker.mjs` se desplegó el 7/11/2026 en `https://viajeros-garabato-penido-api.alberto-garabato.workers.dev` con versión `2026-11-07-source-2`. `/health` verifica la versión y si existen ambos secretos; no consume cuota de vuelos. La clave SerpApi está guardada cifrada. El propietario ha guardado `FAMILY_ACCESS_CODE` cifrado; `/health` confirma ambos secretos configurados y `/search` rechaza peticiones sin autorización (401). Prueba autenticada completada en el portal: 36 opciones de ida y 25 de vuelta para BCN, del 15 al 20/02/2027, con las cinco salidas y categorías 2 adultos/3 niños. Era una prueba técnica, no una propuesta familiar. Ha consumido dos consultas; quedan 247 de las 250 mensuales en la comprobación posterior.
 
 `search-client.js` usa el servicio HTTPS configurado en `index.html`. La clave familiar se introduce en el formulario, se mantiene en memoria de la página y no se guarda en almacenamiento del navegador. Nunca introducir allí la clave de SerpApi.
 
@@ -34,4 +34,4 @@ La fuente Amadeus Self-Service se retiró el 17/07/2026. Su adaptador real perma
 - `node tests/core.test.cjs`: fechas y sintaxis.
 - Revisar formulario y presentación en navegador después de cambios.
 
-La consulta técnica original de SerpApi devolvió 21 opciones. Se ha vuelto a usar esa respuesta de forma local para verificar la normalización, sin nuevas búsquedas. Consultar `cloudflare/README.md`, `backend/providers/SERPAPI.md`, `REQUISITOS.md` y `DESIGN.md` para detalles.
+La consulta técnica original de SerpApi devolvió 21 opciones. Su respuesta se reutilizó localmente para verificar la normalización. Después se verificó la conexión completa desde el portal con las dos consultas indicadas arriba. Consultar `cloudflare/README.md`, `backend/providers/SERPAPI.md`, `REQUISITOS.md` y `DESIGN.md` para detalles.

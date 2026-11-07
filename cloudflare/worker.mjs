@@ -1,7 +1,7 @@
 // Secrets belong in Cloudflare, never in this module or the public frontend.
 const WEB_ORIGIN = 'https://albertogarabato.github.io';
 const HOMES = ['SCQ', 'LCG', 'VGO', 'OPO', 'MAD'];
-const VERSION = '2026-11-07-source-1';
+const VERSION = '2026-11-07-source-2';
 class SearchError extends Error {
   constructor(message, status = 400) { super(message); this.status = status; }
 }
@@ -52,8 +52,8 @@ async function provider(path, params, key) {
   const url = new URL('https://serpapi.com' + path);
   for (const [k,v] of Object.entries({...params, api_key:key})) url.searchParams.set(k,String(v));
   let response;
-  try { response = await fetch(url, {redirect:'error', signal:AbortSignal.timeout(60000)}); }
-  catch { throw new SearchError('La fuente no respondió a tiempo. No se reintenta automáticamente.', 502); }
+  try { response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(60000)}); }
+  catch (error) { throw new SearchError(error?.name === 'TimeoutError' || error?.name === 'AbortError' ? 'La fuente no respondió a tiempo. No se reintenta automáticamente.' : 'No se pudo conectar con la fuente de vuelos. No se reintenta automáticamente.', 502); }
   if (!response.ok) throw new SearchError(response.status === 429 ? 'Se ha alcanzado el límite de consultas de vuelos.' : 'La fuente de vuelos no pudo completar la consulta.', 502);
   try { return await response.json(); }
   catch { throw new SearchError('La fuente no devolvió datos válidos.', 502); }

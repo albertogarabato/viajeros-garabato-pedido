@@ -3,7 +3,7 @@
 Servicio creado el 7 de noviembre de 2026 en Cloudflare Workers:
 `viajeros-garabato-penido-api.alberto-garabato.workers.dev`.
 
-`worker.mjs` está desplegado. El endpoint `/health` confirmó por HTTPS el campo `version: 2026-11-07-source-1`. La clave SerpApi está cifrada como secreto en Cloudflare; el propietario ha guardado también el secreto familiar. `/health` confirma la configuración completa y `/search` devuelve 401 sin autorización. La prueba autenticada desde el portal sigue pendiente.
+`worker.mjs` está desplegado. El endpoint `/health` confirmó por HTTPS el campo `version: 2026-11-07-source-2`. La clave SerpApi está cifrada como secreto en Cloudflare; el propietario ha guardado también el secreto familiar. `/health` confirma la configuración completa y `/search` devuelve 401 sin autorización. Prueba autenticada completada desde GitHub Pages: 36 opciones de ida y 25 de vuelta para la consulta técnica BCN 15–20/02/2027, con 2 adultos y 3 niños. La cuota posterior confirma tres consultas acumuladas (una previa más las dos del portal), 247 restantes y plan de precio cero.
 
 ## Configuración privada
 
@@ -26,3 +26,7 @@ Si falta cualquiera de las dos, las búsquedas quedan bloqueadas. La clave famil
 ## Pruebas sin consumir cuota
 
 Importar `worker.test.mjs` con Node y ejecutar `runTests()`. Todas las respuestas son sintéticas. El adaptador Python mantiene sus propias pruebas. Para comprobar el despliegue, `/health` no consume consultas de SerpApi; una llamada sin autorización a `/search` tampoco debe consumirlas.
+
+## Compatibilidad de transporte
+
+Workers no admite `redirect: error`. El transporte usa `redirect: manual` y rechaza respuestas no satisfactorias; no sigue redirecciones que pudieran llevar la clave a otro servidor. La prueba de transporte exige esta opción. Los fallos de conexión se distinguen de los tiempos de espera sin devolver URLs ni detalles privados.

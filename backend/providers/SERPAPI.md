@@ -6,9 +6,10 @@ Comprobación realizada el **7 de noviembre de 2026**.
 - Cuenta activa con Free Plan de 0 €, 250 consultas mensuales.
 - Una consulta técnica Madrid–Barcelona, solo ida, 15/02/2027, un adulto y vuelos directos: respuesta Success, 21 opciones con precio.
 - Normalización posterior de esas 21 opciones sin repetir la petición.
-- Consulta de cuenta posterior: 1 búsqueda utilizada y 249 disponibles.
+- Prueba inicial: 1 búsqueda utilizada y 249 disponibles.
+- Integración posterior en Cloudflare y GitHub Pages: 36 opciones de ida y 25 de vuelta, BCN 15–20/02/2027, cinco orígenes y categorías 2 adultos/3 niños. Dos consultas adicionales; comprobación posterior: 3 utilizadas, 247 disponibles, plan gratuito activo.
 
-No es una propuesta de viaje familiar. La clave, las respuestas brutas y los datos privados de cuenta no están en este repositorio. La clave se mantiene localmente fuera de la carpeta publicada, con permisos de lectura/escritura solo para el propietario.
+No es una propuesta de viaje familiar. La clave, las respuestas brutas y los datos privados de cuenta no están en este repositorio. La copia local de la clave queda fuera de la carpeta publicada, con permisos solo para el propietario; el servicio web la utiliza como secreto cifrado de Cloudflare.
 
 ## Implementado
 
@@ -25,7 +26,7 @@ El límite por instancia no sustituye a la cuota del proveedor ni al presupuesto
 - Los suplementos de equipaje y la protección de las conexiones no se presuponen incluidos.
 - Las horas recibidas son locales; hay que resolver zonas horarias antes de introducir vuelos en el optimizador.
 - Las ofertas llevan `status: observed` y no se marcan como cotizaciones verificadas del motor. Plazas y precios pueden cambiar antes de reservar.
-- El backend aún no está desplegado ni conectado a la página de GitHub Pages. La primera conexión funciona; el portal sigue sin servicio de búsqueda real habilitado.
+- El servicio de primera fuente está desplegado y conectado a GitHub Pages, con acceso familiar obligatorio. Devuelve precios observados; todavía no alimenta el motor de cotizaciones verificadas. Ver `../../cloudflare/README.md`.
 - Hay 39 pruebas de backend con datos sintéticos; la validación de conexión descrita arriba fue una petición real independiente.
 
 ## Referencias

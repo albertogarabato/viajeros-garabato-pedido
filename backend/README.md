@@ -1,6 +1,6 @@
 # Motor Garabato — primera pieza del backend
 
-Este motor es independiente del destino: no contiene rutas prefijadas a Varsovia ni a ninguna otra ciudad. El frontend presenta la búsqueda en la propia página, sin abrir buscadores externos. Este código no se ejecuta en GitHub Pages, que sirve archivos estáticos. No hay proveedor de tarifas conectado ni backend desplegado.
+Este motor es independiente del destino: no contiene rutas prefijadas a Varsovia ni a ninguna otra ciudad. El frontend presenta la búsqueda en la propia página, sin abrir buscadores externos. Este código no se ejecuta en GitHub Pages, que sirve archivos estáticos. La primera fuente de precios observados está conectada mediante el servicio Cloudflare de `../cloudflare/`. Este núcleo Python todavía no recibe cotizaciones reales verificadas de esa fuente.
 
 ## Implementado
 
@@ -18,9 +18,9 @@ Este motor es independiente del destino: no contiene rutas prefijadas a Varsovia
 
 Una fuente autorizada que suministre rutas vigentes, horarios y tarifas para el grupo. Los adaptadores de proveedor serán responsables de traducir los datos y comprobar que una oferta marcada como `live` incluye realmente esos viajeros y ese equipaje. El motor no puede certificar una afirmación falsa del proveedor.
 
-Después: orquestador de consultas con caché y cuotas, servicio HTTPS con claves fuera del navegador, integración de resultados con la interfaz y tratamiento de itinerarios protegidos ofrecidos como una reserva completa. En esta primera pieza, dos ofertas de un tramo combinadas son siempre billetes independientes, incluso si pertenecen a la misma compañía.
+El primer servicio HTTPS y la presentación de resultados observados ya funcionan en Cloudflare y la interfaz. Para este núcleo faltan orquestación de tramos independientes, zonas horarias y cotizaciones verificadas del grupo, junto con cuotas persistentes y tratamiento de itinerarios protegidos ofrecidos como una reserva completa. En esta primera pieza, dos ofertas de un tramo combinadas son siempre billetes independientes, incluso si pertenecen a la misma compañía.
 
-No se ha activado ningún servicio, cuenta, facturación ni API. No hay acceso a claves del usuario.
+SerpApi y Cloudflare están configurados en sus planes gratuitos. Las claves están fuera del frontend. No se ha activado facturación ni se han realizado reservas.
 
 ## Comprobar
 
@@ -38,4 +38,4 @@ Las 19 pruebas usan aeropuertos AAA/BBB/CCC/DDD y precios **sintéticos exclusiv
 
 Las búsquedas solo pueden ser completas dentro de las fuentes, fechas y vuelos que se hayan consultado. No hay promesa de mínimo global de todas las aerolíneas.
 
-Flujo actual: Buscar mantiene la búsqueda dentro de la aplicación. Sin proveedor configurado, muestra indisponibilidad explícita, no una lista vacía de supuestos vuelos. No hay resultados reales disponibles todavía. El cliente preparado en `search-client.js` admite un endpoint HTTPS público del backend (sin secretos); no se ha desplegado dicho servicio. La composición de adultos/menores también deberá configurarse antes de solicitar tarifas reales.
+Flujo actual: Buscar muestra resultados observados de ida y vuelta dentro de la aplicación mediante el servicio Cloudflare. Se configura la composición de viajeros y una clave familiar. Las ofertas no se marcan como `live` ni se introducen en este motor hasta comprobar precios del grupo, equipaje, disponibilidad y zonas horarias.

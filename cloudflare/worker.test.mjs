@@ -19,7 +19,9 @@ export async function runTests() {
   throws(() => validate({...query,party:{...query.party,children:9}}));
   const originalFetch = globalThis.fetch;
   let calls = [];
-  globalThis.fetch = async (url) => {
+  globalThis.fetch = async (url, init) => {
+    // Workers rejects redirect:error before sending a request.
+    assert.equal(init.redirect, "manual");
     const u = new URL(url); calls.push(u);
     if(u.pathname === '/account.json') return Response.json({account_status:'Active',plan_monthly_price:0,plan_searches_left:100});
     const p = Object.fromEntries(u.searchParams);
